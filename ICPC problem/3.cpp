@@ -5,20 +5,60 @@ using namespace std;
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-#define sq(x) (x) * (x)
-#define PI acos(-1.0)
-#define all(x) x.begin(), x.end()
-#define mod 1000000007
-typedef long long int ll;
-typedef unsigned long long int llu;
-#define pb push_back
-#define pop pop_back()
-#define len(a) sizeof(a)
-#define lc (n * 2)
-#define rc ((n * 2) + 1)
 int main()
 {
     faster;
-    int t;cin>>
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        string s, ss;
+        cin >> s;
+        int Over, Overr, W = 0, Run = 0;
+        int len = s.size();
+        Over = len / 6;
+        Overr = len % 6;
+        for (int i = 0; i < len; i++)
+        {
+            if (s[i] == 'W')
+                W++;
+            else
+            {
+                Run += s[i] - '0';
+            }
+        }
+        if (Over >= 1 && Overr > 0 && W > 1 && Run > 1)
+        {
+            cout << Over << "." << Overr << " Overs " << Run << " Runs " << W << " Wickets." << endl;
+        }
+        else if (Over >= 1 && Overr > 0 && W <= 1 && Run <= 1)
+        {
+            cout << Over << "." << Overr << " Overs " << Run << " Run " << W << " Wicket." << endl;
+        }
+        else if (Over >= 1 && Overr > 0 && W > 1 && Run <= 1)
+        {
+            cout << Over << "." << Overr << " Overs " << Run << " Run " << W << " Wickets." << endl;
+        }
+        else if (Over >= 1 && Overr > 0 && W <= 1 && Run > 1)
+        {
+            cout << Over << "." << Overr << " Overs " << Run << " Runs " << W << " Wicket." << endl;
+        }
+        else if (Over <= 1 && Overr >= 0 && W > 1 && Run > 1)
+        {
+            cout << Over << "." << Overr << " Over " << Run << " Runs " << W << " Wickets." << endl;
+        }
+        else if (Over <= 1 && Overr >= 0 && W <= 1 && Run > 1)
+        {
+            cout << Over << "." << Overr << " Over " << Run << " Runs " << W << " Wicket." << endl;
+        }
+        else if (Over <= 1 && Overr >= 0 && W > 1 && Run <= 1)
+        {
+            cout << Over << "." << Overr << " Over " << Run << " Run " << W << " Wickets." << endl;
+        }
+        else if (Over <= 1 && Overr >= 0 && W <= 1 && Run <= 1)
+        {
+            cout << Over << "." << Overr << " Over " << Run << " Run " << W << " Wicket." << endl;
+        }
+    }
     return 0;
 }
