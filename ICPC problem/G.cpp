@@ -1,85 +1,55 @@
-// Problem: G
-
-#include <iostream>
-#include <cmath>
-#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
-
-#define FASTER                    \
+#define MTK                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-#define fl for (int i = 0; i < n; i++)
-#define tfl for (int i = 1; i <= t; i++)
-#define YES cout << "YES\n"
-#define NO cout << "NO\n"
-#define nl "\n"
+#define mem(a, b) memset(a, b, sizeof(a))
+#define show(x) cout << #x << ' ' << x << endl
+#define all(x) (x).begin(), (x).end()
+#define ll int long long
+#define mod 1000000007
 
-using ll = long long;
-using lld = long double;
-using ull = unsigned long long;
-
-const lld pi = 3.141592653589793238;
-const ll INF = LONG_LONG_MAX;
-const ll mod = 1e9 + 7;
-
-/*=====================================================
-
-========================================================*/
-
-void ann()
+int32_t main()
 {
-}
-
-int main()
-{
-    FASTER
-    ll t;
+    MTK;
+    int t;
     cin >> t;
     while (t--)
     {
-        string b;
-        cin >> b;
-        double overs = 0;
-        ll balls = 0, runs = 0, wickets = 0;
-        for (char ball : b)
+        string s;
+        cin >> s;
+        int n = s.size();
+        int run = 0, wicket = 0;
+        for (int i = 0; i < n; i++)
         {
-            if (ball == 'W')
-            {
-                wickets++;
-                balls++;
-            }
+            if (s[i] == 'W')
+                wicket++;
             else
             {
-                ll run = ball - '0';
-                runs += run;
-                balls++;
-                if (balls == 6)
-                {
-                    overs += 1.0;
-                    balls = 0;
-                }
+                char ch = s[i];
+                int x = ch - '0';
+                run += x;
             }
         }
-        if (balls > 0)
-        {
-            overs += (static_cast<double>(balls) / 6);
-        }
-        if (overs > 1)
-        {
-            if ((balls > 0) || (runs > 1) || (wickets > 1))
-            {
-                cout << overs << " Over " << runs << " Runs " << wickets << " Wickets." << nl;
-            }
-            else
-            {
-                cout << overs << ".0 Overs " << runs << " Run " << wickets << " Wicket." << nl;
-            }
-        }
+        int ball = n / 6;
+        int extra_ball = n % 6;
+
+        if (ball >= 1 and extra_ball > 0)
+            cout << ball << "." << extra_ball << " Overs ";
         else
-        {
-            cout << "0." << ll(overs * 10) << " Overs " << runs << " Runs " << wickets << " Wickets." << nl;
-        }
+            cout << ball << "." << extra_ball << " Over ";
+
+        if (run > 1)
+            cout << run << " Runs ";
+        else
+            cout << run << " Run ";
+        if (wicket > 1)
+            cout << wicket << " Wickets." << '\n';
+        else
+            cout << wicket << " Wicket." << '\n';
+p0
+        // cout << n << ' ' << run << ' ' << wicket << '\n';
     }
+    return 0;
 }
